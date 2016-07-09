@@ -1,0 +1,123 @@
+<!-- This is passing a value from first page to second page with ng-param -->
+<!-- more on app.js controller leadsPage -->	
+<!-- on second.html controller zipSecond -->
+<div class="alert alert-warning" ng-controller="leadsPage">
+	<h3 class="brown">$routeParams</h3>
+	<p>Please Enter Your </p>
+	<label>Name   </label><input class="form-control" ng-model="name" placeholder="Enter Name"><br>
+	<button ng-click="submit()">Next Page </button>
+	<p>{{name}}</p>
+</div>
+
+<!-- This part using ng-init and ng-repeat to show item inside the ng-init -->
+
+<h3 class='brown'>ng-init &amp ng-repeat</h3>
+<h5>Basic ng-repeat</h5>
+<div ng-init="Items =['one', 'two', 'three', 'Victor']">
+	<ul>
+		<li ng-repeat="Item in Items">
+			{{Item}}
+		</li>
+	</ul>
+</div>
+
+<h5>ng-repeat with object</h5>
+<div ng-init="Books =[{Author:'Jack Rosenbalt', Title:'System Analysis'}, 
+						{Author:'JK Rowling', Title:'Harry The Potter'},
+						{Author:'Alan Walker', Title:'Faded'},
+						{Author:'David Hernandez', Title:'Jeep Laredo'},
+						{Author:'Nancy Lee', Title:'Greenview Kids'}]">
+	<ul>
+		<li ng-repeat="Book in Books">
+			{{Book.Author}} wrote <span class="brown">{{Book.Title}}</span>
+		</li>
+	</ul>
+<!-- Basic Filtering -->
+	<div class="alert alert-warning">
+	<h3 class="brown">Basic Filter</h3>
+	<p>Type in any object below, it will search only particular object. <br>
+		For Instance : type 'J' Filter:search will only shows any author or title with J</p>
+	<lable>Search Name or Book Title </label><input class="form-control" type="text" ng-model="search" placeholder="Search">
+		<ul>
+			<li ng-repeat="Book in Books | filter:search">
+				{{Book.Author}} wrote <span class="brown">{{Book.Title}}</span>
+			</li>
+		</ul>
+	</div> <!-- end of alert alert warning -->
+</div> <!-- End of second ng-init -->
+
+<div ng-controller="songsCtrl">
+	<div class="col-md-6">
+	<h3 class="brown">Controller getting data</h3>
+	
+	<p>Getting List of song from app.js</p>
+	<ul>
+		<li ng-repeat="Song in list">
+			{{Song.Author}} - {{Song.Title}}
+		</li>
+	</ul>
+	</div>
+	<div class="col-md-6 alert alert-warning">
+	<h3 class="brown">And add Data</h3>
+	<form ng-submit="addSinger()">
+		<input class="form-control" type="text" placeholder="Band Name" 
+		ng-model="singerName"><br>
+		<input class="form-control" type="text" placeholder="Song Name" 
+		ng-model="songName"><br>
+		<input type="submit"  value="Submit" class="btn btn-default">
+	</form>
+</div>
+</div>
+
+<div class="col-md-12" ng-controller="associateCtrl">
+	<h3 class="brown">ng-class</h3>
+	<div class ="col-md-4">
+	<p>Making associates name red when associate is 16 and under. By using argument inside ng-class</p>
+	<ul>
+		<li ng-repeat="ass in associates"
+		    ng-class="{'red': ass.Age <= 16}">
+			{{ass.Name}} - {{ass.Age}}
+		</li>
+	</ul>
+	</div>
+	<div class ="col-md-4">
+		<p>Two argument inside ng-class, one being 16 and under. The other if associate is above 60 years old. </p>
+	<ul>
+		<li ng-repeat="ass in associates"
+		    ng-class="{'red': ass.Age <= 16, 'lightBlue': ass.Age >60}">
+			{{ass.Name}} - {{ass.Age}}
+		</li>
+	</ul>
+	</div>
+	<div class ="col-md-4">
+	<p>Using <b>ternary operator</b> inside ng-class. a.k.a. If statement in one line.</p>
+	<ul>
+		<li ng-repeat="ass in associates"
+		    ng-class="ass.Age > 29 ? 'lightBlue' : 'red' ">
+			{{ass.Name}} - {{ass.Age}}
+		</li>
+	</ul>
+	</div>
+	<div class="col-md-12 alert alert-warning" ng-class="{'hidden': toggle}">
+	<button class="btn btn-warning" ng-click="toggle = true">Close</button>
+	<h3>Add Associate</h3>
+	<form ng-submit="addAssociates()">
+		<input class="form-control" type="text" placeholder="First Name" 
+		ng-model="name"><br>
+		<input class="form-control" type="text" placeholder="Age" 
+		ng-model="age"><br>
+		<input type="submit"  value="Submit" class="btn btn-default">
+	</form>
+	</div>
+</div>
+
+<div class="col-md-12 text-center alert alert-warning" ng-controller="associateCtrl" >
+	<h3 class="brown">ng-if, ng-hide and ng-show</h3>
+	<div class="col-md-12 text-center" ng-class="{'hidden': toggle}">
+		<img src="images/headphones.png" class="img-rounded " alt="Headphones image">
+		<img src="images/ukulele.png" class="img-rounded " alt="ukulele image">
+		<img src="images/anchor.png" class="img-rounded " alt="anchor image">
+	</div>
+	<button class="btn btn-warning"   ng-click="toggle = false">Hide</button>
+	<button class="btn btn-warning"  ng-click="toggle = true">Show</button>
+</div>

@@ -1,0 +1,26 @@
+body {
+	font-family: 'Lato', sans-serif;
+}
+
+.brown{
+	color: #E76816  ;
+	font-family: 'Gloria Hallelujah', cursive;
+}
+
+.red{
+	color: red;
+}
+
+.lightBlue {
+	color: #00BFFF;
+}
+
+.hidden {
+	display:none;
+}
+
+.pictures {
+	height: 100px;
+	border-radius: 15px;
+	border: 1px solid #0040ff;
+}
